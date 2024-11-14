@@ -5,6 +5,7 @@ import com.example.simplemessenger.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +34,15 @@ public class UserService {
     // Удалить пользователя
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public List<User> findUser(String username) {
+        List<User> users = new ArrayList<>();
+        for (User user : userRepository.findAll()) {
+            if (user.getUsername().contains(username)) {
+                users.add(user);
+            }
+        }
+        return users;
     }
 }

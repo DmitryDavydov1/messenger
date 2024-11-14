@@ -43,4 +43,10 @@ public class UserController {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> findUsers(@RequestParam String username) {
+        return userService.findUser(username) != null ? new ResponseEntity<>(userService.findUser(username), HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
