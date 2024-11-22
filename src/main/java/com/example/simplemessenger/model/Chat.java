@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 //import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Chat {
@@ -15,8 +16,21 @@ public class Chat {
     @Column(name = "created_at")
     private LocalDateTime createdAt; // Дата и время создания чата
 
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserChat> participants;
+
+    // Геттеры и сеттеры
+    public List<UserChat> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<UserChat> participants) {
+        this.participants = participants;
+    }
+
     // Конструктор без параметров
-    public Chat() {}
+    public Chat() {
+    }
 
     // Конструктор для создания нового чата
     public Chat(LocalDateTime createdAt) {
