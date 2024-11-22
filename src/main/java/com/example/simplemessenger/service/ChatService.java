@@ -1,11 +1,9 @@
 package com.example.simplemessenger.service;
 
 import com.example.simplemessenger.model.Chat;
-import com.example.simplemessenger.model.User;
 import com.example.simplemessenger.model.UserChat;
 import com.example.simplemessenger.repositories.ChatRepository;
 import com.example.simplemessenger.repositories.UserChatRepository;
-import com.example.simplemessenger.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,5 +54,10 @@ public class ChatService {
         userChatRepository.saveAll(List.of(userChat1, userChat2));
 
         return newChat.getId();
+    }
+
+    public Chat getChatByEmail(Long id) {
+        return chatRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("chat not found"));
     }
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface UserChatRepository extends JpaRepository<UserChat, Long> {
     boolean existsByUserAndChat(User user, Chat chat);
     List<UserChat> findByUser(User user);
+    List<UserChat> findByChatId(Long id);
+    boolean existsByChatIdAndUserId(Long chatId, Long userId);
 }

@@ -1,6 +1,7 @@
 package com.example.simplemessenger.controller;
 
 import com.example.simplemessenger.service.ChatService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/chats")
+@OpenAPIDefinition
 public class ChatController {
     private final ChatService chatService;
 
