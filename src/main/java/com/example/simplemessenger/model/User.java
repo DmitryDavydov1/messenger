@@ -2,27 +2,31 @@ package com.example.simplemessenger.model;
 
 import jakarta.persistence.*;
 
+//import javax.persistence.*;
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "users")
+@Table(name = "app_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Уникальный идентификатор пользователя
 
-    private String username;
-    private String email;
-    private String password;
+    private String username; // Имя пользователя
+    private String email;    // Адрес электронной почты
 
-    // Конструкторы, геттеры и сеттеры
+    @Column(name = "created_at")
+    private LocalDateTime createdAt; // Дата и время регистрации
 
-    public User() {
-    }
+    // Конструктор без параметров (необходим для JPA)
+    public User() {}
 
-    public User(String username, String email, String password) {
+    // Конструктор для создания нового пользователя
+    public User(String username, String email, LocalDateTime createdAt) {
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.createdAt = createdAt;
     }
 
     // Геттеры и сеттеры
@@ -50,11 +54,17 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    // toString(), equals() и hashCode() можно генерировать автоматически через IDE (например, IntelliJ IDEA)
+    @Override
+    public String toString() {
+        return "User{id=" + id + ", username='" + username + "', email='" + email + "', createdAt=" + createdAt + '}';
     }
 }
