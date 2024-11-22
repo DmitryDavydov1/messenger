@@ -15,14 +15,14 @@ public class UserChat {
     private Long id; // Уникальный идентификатор записи
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user; // Пользователь
 
     @ManyToOne
-    @JoinColumn(name = "chat_id")
+    @JoinColumn(name = "chat_id", nullable = false)
     private Chat chat; // Чат
 
-    @Column(name = "joined_at")
+    @Column(name = "joined_at", nullable = false)
     private LocalDateTime joinedAt; // Дата и время присоединения пользователя к чату
 
     // Конструктор без параметров

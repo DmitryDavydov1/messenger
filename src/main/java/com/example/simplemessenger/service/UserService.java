@@ -24,4 +24,9 @@ public class UserService {
         user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
     }
+
+    public User getUserByEmail(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
 }
