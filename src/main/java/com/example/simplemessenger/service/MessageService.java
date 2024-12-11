@@ -5,10 +5,12 @@ import com.example.simplemessenger.repositories.ChatRepository;
 import com.example.simplemessenger.repositories.MessageRepository;
 import com.example.simplemessenger.repositories.UserChatRepository;
 import com.example.simplemessenger.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Service
 public class MessageService {
@@ -51,5 +53,12 @@ public class MessageService {
 
         // Сохраняем сообщение в базе данных
         messageRepository.save(message);
+    }
+
+    @Transactional
+    public ArrayList<Message> getMessage(Long chatId) {
+        ArrayList<Message> messages = new ArrayList<>();
+        messages = messageRepository.findByChatId(chatId);
+        return messages;
     }
 }

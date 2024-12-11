@@ -1,5 +1,7 @@
 package com.example.simplemessenger.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 //import javax.persistence.*;
@@ -15,6 +17,7 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "chat_id")
+    @JsonIgnore
     private Chat chat; // Связь с чатом
 
     @ManyToOne

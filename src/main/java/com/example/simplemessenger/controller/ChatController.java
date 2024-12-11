@@ -30,4 +30,5 @@ public class ChatController {
         List<ChatDTO> userChats = chatService.getChatsForUser(userId);
         return ResponseEntity.ok(userChats);
     }
+
 }

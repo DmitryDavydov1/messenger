@@ -23,8 +23,13 @@ public class UserController {
     @PostMapping("/register")
     public void registerUser(@RequestBody User user) {
         userService.registerUser(user.getUsername(), user.getEmail());
-
     }
+
+    @PostMapping("/log-int")
+    public boolean logIn(@RequestBody User user) {
+        return userService.logIn(user.getUsername(), user.getEmail());
+    }
+
 
     // Получить всех пользователей
 //    @GetMapping
