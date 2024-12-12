@@ -4,25 +4,24 @@ import com.example.simplemessenger.model.User;
 import com.example.simplemessenger.service.UserService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 @OpenAPIDefinition
-
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     // Регистрация нового пользователя
-    @PostMapping("/register")
-    public void registerUser(@RequestBody User user) {
+    @PostMapping(value = "/register")
+
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
         userService.registerUser(user.getUsername(), user.getEmail());
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/log-int")
