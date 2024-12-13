@@ -20,8 +20,8 @@ public class UserController {
     @PostMapping(value = "/register")
 
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        userService.registerUser(user.getUsername(), user.getEmail());
-        return ResponseEntity.ok(user);
+        User users =  userService.registerUser(user.getUsername(), user.getEmail());
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping("/log-int")

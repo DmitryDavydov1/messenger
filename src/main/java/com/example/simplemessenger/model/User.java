@@ -27,6 +27,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.createdAt = createdAt;
+
     }
 
     // Геттеры и сеттеры

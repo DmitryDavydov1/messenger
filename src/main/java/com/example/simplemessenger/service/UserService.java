@@ -13,16 +13,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void registerUser(String username, String email) {
+    public User registerUser(String username, String email) {
         if (userRepository.existsByEmail(email)) {
-            throw new RuntimeException("User with this email already exists");
+            return userRepository.findByEmail(email).get();
         }
-
         User user = new User();
         user.setUsername(username);
         user.setEmail(email);
         user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
+        return userRepository.findById(user.getId()).get();
     }
 
     public User getUserByEmail(Long id) {
