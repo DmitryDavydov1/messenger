@@ -21,12 +21,14 @@ public class ChatController {
         this.chatService = chatService;
     }
 
+    //создание нового чата по id двух участников чата
     @PostMapping(value = "/get-or-create")
     public ResponseEntity<Long> getOrCreateChat(@RequestParam Long userId1, @RequestParam Long userId2) {
         Long chatId = chatService.getOrCreateChatBetweenUsers(userId1, userId2);
         return ResponseEntity.ok(chatId);
     }
 
+    //получение информации о всех чатах пользователя по его id
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<ChatDTO>> getUserChats(@PathVariable Long userId) {
         List<ChatDTO> userChats = chatService.getChatsForUser(userId);
