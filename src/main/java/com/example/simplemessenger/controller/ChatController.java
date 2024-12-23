@@ -4,6 +4,7 @@ import com.example.simplemessenger.model.ChatDTO;
 import com.example.simplemessenger.model.UserChat;
 import com.example.simplemessenger.service.ChatService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class ChatController {
 
     //получение информации о всех чатах пользователя по его id
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<ChatDTO>> getUserChats(@PathVariable Long userId) {
+    public ResponseEntity<List<ChatDTO>> getUserChats(@Parameter(description = "id юзера для получения информации о его чатах", allowEmptyValue = true, example = "4") @PathVariable Long userId) {
         List<ChatDTO> userChats = chatService.getChatsForUser(userId);
         return ResponseEntity.ok(userChats);
     }
